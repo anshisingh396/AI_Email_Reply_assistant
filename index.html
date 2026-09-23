@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Email Reply Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- ======================================
+             Header
+             ====================================== -->
+
+        <header>
+
+            <h1>AI Email Reply Assistant</h1>
+
+            <p>
+                Generate professional email replies with ease
+            </p>
+
+            <div class="ai-badge">
+                🤖 AI Powered
+            </div>
+
+        </header>
+
+
+        <!-- ======================================
+             Email Input
+             ====================================== -->
+
+        <section>
+
+            <label for="email">Your Email</label>
+
+            <textarea
+                id="email"
+                placeholder="Paste or type your email here..."></textarea>
+
+            <!-- Character Counter -->
+            <div class="character-count">
+                Characters: <span id="charCount">0</span>
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             Reply Tone
+             ====================================== -->
+
+        <section>
+
+            <label>Reply Tone</label>
+
+            <div class="tone-buttons">
+
+                <button class="tone active">
+                    Formal
+                </button>
+
+                <button class="tone">
+                    Friendly
+                </button>
+
+                <button class="tone">
+                    Polite
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             Generate Button
+             ====================================== -->
+
+        <button class="generate">
+            Generate Reply
+        </button>
+
+
+        <!-- ======================================
+             Generated Reply
+             ====================================== -->
+
+        <section>
+
+            <label for="reply">Generated Reply</label>
+
+            <textarea
+                id="reply"
+                placeholder="Your AI-generated reply will appear here..."
+                readonly></textarea>
+
+        </section>
+
+
+        <!-- ======================================
+             Action Buttons
+             ====================================== -->
+
+        <div class="actions">
+
+            <button>Copy</button>
+
+            <button>Clear</button>
+
+            <button>Regenerate</button>
+
+        </div>
+
+
+        <!-- ======================================
+             How to Use
+             ====================================== -->
+
+        <section class="how-to-use">
+
+            <h2>How to Use</h2>
+
+            <ol>
+
+                <li>
+                    Paste or type the email you want to reply to.
+                </li>
+
+                <li>
+                    Select your preferred reply tone.
+                </li>
+
+                <li>
+                    Click <strong>Generate Reply</strong>.
+                </li>
+
+                <li>
+                    Review the AI-generated reply.
+                </li>
+
+                <li>
+                    Use <strong>Copy</strong> to copy the reply.
+                </li>
+
+                <li>
+                    Use <strong>Regenerate</strong> to create another reply.
+                </li>
+
+                <li>
+                    Use <strong>Clear</strong> to start again.
+                </li>
+
+            </ol>
+
+        </section>
+
+    </div>
+
+
+    <!-- ======================================
+         Footer
+         ====================================== -->
+
+    <footer>
+
+        <p>
+            AI Email Reply Assistant © 2026
+        </p>
+
+    </footer>
+
+
+    <!-- ======================================
+         JavaScript
+         ====================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
