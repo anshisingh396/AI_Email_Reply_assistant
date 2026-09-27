@@ -2,14 +2,10 @@ import os
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from openai import OpenAI
 
 app = Flask(__name__)
 
 CORS(app)
-
-# OpenAI API key environment variable se read hogi
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
 
 
 @app.route("/")
@@ -39,31 +35,51 @@ def generate_reply():
                 "error": "Please enter an email first."
             }), 400
 
-        # AI prompt
-        prompt = f"""
-You are an AI Email Reply Assistant.
+        # Demo replies
+        if tone == "Formal":
 
-Write a professional email reply to the following email.
+            reply = f"""Dear Sir/Madam,
 
-Tone: {tone}
+Thank you for your email.
 
-Original email:
+I have received your message regarding the following matter:
+
 {email}
 
-Rules:
-- Keep the reply clear and natural.
-- Do not add unnecessary information.
-- Match the requested tone.
-- Include a suitable greeting and closing.
-"""
+I will review the details and get back to you accordingly.
 
-        # OpenAI API call
-        response = client.responses.create(
-            model="gpt-5.6-luna",
-            input=prompt
-        )
+Best regards,
+AI Email Reply Assistant"""
 
-        reply = response.output_text
+        elif tone == "Friendly":
+
+            reply = f"""Hi,
+
+Thanks for reaching out!
+
+I received your email regarding:
+
+{email}
+
+I’ll get back to you soon with the required information.
+
+Best,
+AI Email Reply Assistant"""
+
+        else:  # Polite
+
+            reply = f"""Dear Sir/Madam,
+
+Thank you for contacting me.
+
+I appreciate your email regarding:
+
+{email}
+
+I will look into the matter and respond as soon as possible.
+
+Kind regards,
+AI Email Reply Assistant"""
 
         # Successful response
         return jsonify({
@@ -81,6 +97,7 @@ Rules:
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
+
     app.run(
         host="0.0.0.0",
         port=port,
