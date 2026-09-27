@@ -39,6 +39,7 @@ emailInput.addEventListener("input", function () {
 
 toneButtons.forEach(function (button) {
     button.addEventListener("click", function () {
+
         toneButtons.forEach(function (btn) {
             btn.classList.remove("active");
         });
@@ -55,6 +56,7 @@ toneButtons.forEach(function (button) {
 // ======================================
 
 async function generateReply() {
+
     const email = emailInput.value.trim();
 
     // Check empty email
@@ -71,13 +73,16 @@ async function generateReply() {
     generateButton.textContent = "Generating...";
 
     try {
+
         const response = await fetch(
-            "http://127.0.0.1:5000/generate-reply",   // ✅ FIXED route
+            "https://ai-email-reply-assistant-ru3n.onrender.com/generate-reply",
             {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     email: email,
                     tone: selectedTone
@@ -89,18 +94,25 @@ async function generateReply() {
 
         // Check server error
         if (!response.ok) {
+
             replyOutput.value =
                 data.error || "Something went wrong. Please try again.";
+
             return;
         }
 
         // Show AI reply
         replyOutput.value = data.reply;
+
     } catch (error) {
+
         console.error(error);
+
         replyOutput.value =
-            "Unable to connect to the backend. Please make sure the server is running.";
+            "Unable to connect to the backend. Please try again.";
+
     } finally {
+
         // Enable button again
         generateButton.disabled = false;
         generateButton.textContent = "Generate Reply";
@@ -120,12 +132,16 @@ generateButton.addEventListener("click", generateReply);
 // ======================================
 
 copyButton.addEventListener("click", function () {
+
     if (replyOutput.value.trim() === "") {
+
         alert("There is no reply to copy.");
+
         return;
     }
 
     navigator.clipboard.writeText(replyOutput.value);
+
     alert("Reply copied!");
 });
 
@@ -135,8 +151,10 @@ copyButton.addEventListener("click", function () {
 // ======================================
 
 clearButton.addEventListener("click", function () {
+
     emailInput.value = "";
     replyOutput.value = "";
+
     // Reset character counter
     charCount.textContent = "0";
 });
@@ -147,5 +165,7 @@ clearButton.addEventListener("click", function () {
 // ======================================
 
 regenerateButton.addEventListener("click", function () {
+
     generateReply();
+
 });
